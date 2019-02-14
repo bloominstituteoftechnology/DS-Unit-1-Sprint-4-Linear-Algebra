@@ -5,6 +5,7 @@
 
 [Making sense of principal component analysis, eigenvectors & eigenvalues](https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues)
 
+[Principal Component Analysis Explained Visually](http://setosa.io/ev/principal-component-analysis/)
 
 ### Vectors and Matrices
 Learning the fundamentals of linear algebra is critical in order to be a well-rounded data scientist. Many algorithm implementations are highly LA-based, so a familiarity with these topics is necessary in order to comprehend those approaches.
