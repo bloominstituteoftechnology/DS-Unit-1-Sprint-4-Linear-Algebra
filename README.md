@@ -1,3 +1,11 @@
+### Resources
+[3Blue1Brown Essence of Linear Algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab)
+
+[MIT 18.06 Linear Algebra, Spring 2005](https://www.youtube.com/watch?v=ZK3O402wf1c)
+
+[Making sense of principal component analysis, eigenvectors & eigenvalues](https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues)
+
+
 ### Vectors and Matrices
 Learning the fundamentals of linear algebra is critical in order to be a well-rounded data scientist. Many algorithm implementations are highly LA-based, so a familiarity with these topics is necessary in order to comprehend those approaches.
 
