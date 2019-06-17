@@ -290,15 +290,13 @@
       "metadata": {
         "id": "xS-JuHl9JiiP",
         "colab_type": "code",
-        "outputId": "69ba702f-56fd-4978-b4b0-91fc0d1af632",
+        "outputId": "bbb30506-4827-4cc2-9108-00467e826d36",
         "colab": {
           "base_uri": "https://localhost:8080/",
-          "height": 202
+          "height": 195
         }
       },
       "source": [
-        "import pandas as pd\n",
-        "\n",
         "customers = [820, 760, 1250, 990, 1080, 1450, 1600]\n",
         "snow = [0, 1, 7, 1, 0, 6, 4]\n",
         "\n",
@@ -306,7 +304,7 @@
         "\n",
         "df.head()"
       ],
-      "execution_count": 0,
+      "execution_count": 19,
       "outputs": [
         {
           "output_type": "execute_result",
@@ -376,7 +374,7 @@
           "metadata": {
             "tags": []
           },
-          "execution_count": 18
+          "execution_count": 19
         }
       ]
     },
@@ -388,10 +386,77 @@
         "colab": {}
       },
       "source": [
-        "##### Your Code Here #####"
+        "def mean_var_stdev (l):\n",
+        "  \"\"\"\n",
+        "  mean_var_stdev returns the mean, variance and stdev of a list l \n",
+        "  l: list \n",
+        "  return: mean, variance, standard deviation \n",
+        "  \"\"\"\n",
+        "  N = len(l)\n",
+        "  m = sum(l)/N\n",
+        "  v_sq_dist = [(l[i]-m)**2 for i in range(N)]\n",
+        "  v = sum(v_sq_dist)/N\n",
+        "  std = np.sqrt(v)\n",
+        "  return m, v, std"
       ],
       "execution_count": 0,
       "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "VcNiTcjgBswO",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 67
+        },
+        "outputId": "8b5c379c-e189-4942-d16e-8a5e97909679"
+      },
+      "source": [
+        "customers_stats = mean_var_stdev(df['customers'])\n",
+        "print(f' mean: {customers_stats[0]}\\n variance: {customers_stats[1]}\\n standard deviation: {customers_stats[2]}')"
+      ],
+      "execution_count": 21,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            " mean: 1135.7142857142858\n",
+            " variance: 84653.06122448981\n",
+            " standard deviation: 290.95199127087926\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "_2bPQMNwCB-z",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 67
+        },
+        "outputId": "b9461a81-d48d-48b8-8ab3-174d71ae906b"
+      },
+      "source": [
+        "snow_stats = mean_var_stdev(df['snow'])\n",
+        "print(f' mean: {snow_stats[0]}\\n variance: {snow_stats[1]}\\n standard deviation: {snow_stats[2]}')"
+      ],
+      "execution_count": 27,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            " mean: 2.7142857142857144\n",
+            " variance: 7.346938775510203\n",
+            " standard deviation: 2.7105237087157534\n"
+          ],
+          "name": "stdout"
+        }
+      ]
     },
     {
       "cell_type": "markdown",
@@ -405,17 +470,16 @@
       ]
     },
     {
-      "cell_type": "code",
+      "cell_type": "markdown",
       "metadata": {
-        "id": "LvTtgZ-5Ndw_",
-        "colab_type": "code",
-        "colab": {}
+        "id": "3pJ9Jp9UDBxw",
+        "colab_type": "text"
       },
       "source": [
-        ""
-      ],
-      "execution_count": 0,
-      "outputs": []
+        "No, they are in different units with wildly different spreads. Variance is just the measure of the spread, the standard deviation puts this measure into the same units as the mean which is useful but not for when you are comparing to very different data sets.\n",
+        "\n",
+        "To compare different data sets we can use a variance-covariance matrix and a correlation coefficient."
+      ]
     },
     {
       "cell_type": "markdown",
@@ -432,13 +496,140 @@
       "metadata": {
         "id": "IbglmVaxJjO7",
         "colab_type": "code",
-        "colab": {}
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 106
+        },
+        "outputId": "46318c99-be6c-4ec0-fad9-02f614150f92"
       },
       "source": [
-        ""
+        "df.cov()"
       ],
-      "execution_count": 0,
-      "outputs": []
+      "execution_count": 29,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/html": [
+              "<div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>customers</th>\n",
+              "      <th>snow</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>customers</th>\n",
+              "      <td>98761.904762</td>\n",
+              "      <td>670.238095</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>snow</th>\n",
+              "      <td>670.238095</td>\n",
+              "      <td>8.571429</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>"
+            ],
+            "text/plain": [
+              "              customers        snow\n",
+              "customers  98761.904762  670.238095\n",
+              "snow         670.238095    8.571429"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 29
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "d5xeIYmGEAKl",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 106
+        },
+        "outputId": "938f2772-4fbc-464a-a681-046dc23801ed"
+      },
+      "source": [
+        "df.corr()"
+      ],
+      "execution_count": 30,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/html": [
+              "<div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>customers</th>\n",
+              "      <th>snow</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>customers</th>\n",
+              "      <td>1.000000</td>\n",
+              "      <td>0.728463</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>snow</th>\n",
+              "      <td>0.728463</td>\n",
+              "      <td>1.000000</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>"
+            ],
+            "text/plain": [
+              "           customers      snow\n",
+              "customers   1.000000  0.728463\n",
+              "snow        0.728463  1.000000"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 30
+        }
+      ]
     },
     {
       "cell_type": "markdown",
@@ -479,7 +670,6 @@
       },
       "source": [
         "# Let me get you some data to start you off.\n",
-        "import pandas as pd\n",
         "\n",
         "data = {\"Country\": [\"England\",\"Wales\",\"Scotland\",\"North Ireland\"], \n",
         "        \"Cheese\": [105,103,103,66], \n",
