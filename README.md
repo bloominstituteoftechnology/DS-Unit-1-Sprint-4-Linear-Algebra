@@ -1,4 +1,4 @@
-### :chart_with_upwards_trend: DS-Unit-1-Sprint-04-Linear-Algebra :chart_with_downwards_trend:
+### :arrow_upper_right: DS-Unit-1-Sprint-04-Linear-Algebra :pencil:
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/hurshd0/DS-Unit-1-Sprint-4-Linear-Algebra.git/master)
 
