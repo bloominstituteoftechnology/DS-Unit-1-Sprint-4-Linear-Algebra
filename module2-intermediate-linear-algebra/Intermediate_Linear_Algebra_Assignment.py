@@ -127,7 +127,12 @@ print(f'a and b orthogonal: {numpy.dot(vA, vB)==0} (a dot b = {numpy.dot(vA, vB)
 mC = numpy.array([2, -15, 6, 20])
 print(f'||c||^2 = {numpy.linalg.norm(mC)**2}')
 print(f'c dot c = {numpy.dot(mC,mC)}')
-print(f'c^T c = {numpy.matmul(mC.T, mC)}')
+# print(f'c^T c = {numpy.matmul(numpy.transpose(mC), mC)}')
+print(f'c^T c = {numpy.matmul(numpy.transpose([mC]), numpy.array([mC]))}')
+print(f'c c^T = {numpy.matmul(numpy.array([mC]), numpy.transpose([mC]))}')
+# print(numpy.transpose([mC]).shape)
+# print(numpy.array([mC]).shape)
+
 # Note that all of these are just the sum of the squares of the elements
 
 #%% [markdown]
