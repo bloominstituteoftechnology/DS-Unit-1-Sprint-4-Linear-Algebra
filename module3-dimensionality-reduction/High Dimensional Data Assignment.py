@@ -191,7 +191,7 @@ print(f'{len(num_cols)} numerical columns')
 
 
 #%%
-national_processed = national.copy()
+# national_processed = national.copy()
 
 # Get One-Hot-Encoding of categorical variables
 national_processed = pd.get_dummies(national)
