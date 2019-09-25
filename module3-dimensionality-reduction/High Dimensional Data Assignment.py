@@ -191,11 +191,11 @@ print(f'{len(num_cols)} numerical columns')
 
 
 #%%
-#national_processed = national.copy()
-#del national
+national_processed = national.copy()
 
 # Get One-Hot-Encoding of categorical variables
-#national_processed = pd.get_dummies(national_processed)
+national_processed = pd.get_dummies(national)
+del national
 
 #%%
 #print(national_processed.shape)
@@ -203,21 +203,24 @@ print(f'{len(num_cols)} numerical columns')
 
 #%%
 target = 'VALUE'
-x_cols = num_cols.copy()
+x_cols = list(num_cols).copy()
 x_cols.remove(target)
+new_cols = list(national_processed.columns[national_processed.dtypes!='object'])
+for col in x_cols:
+	new_cols.remove(col)
 
 #%%
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
 scaler = StandardScaler()
-processed = scaler.fit_transform(national[x_cols],y=national[target])
+processed = scaler.fit_transform(national_processed[x_cols],y=national_processed[target]).join(national_processed[new_cols])
 processed[0]
 
 #%%
 
 pca = PCA(20)
-pca.fit(processed,y=national[target])
+pca.fit(processed,y=national_processed[target])
 
 print(f'eigenvectors: {pca.components_}')
 print(f'eigenvalues: {pca.explained_variance_}')
