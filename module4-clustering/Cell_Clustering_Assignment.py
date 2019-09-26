@@ -238,7 +238,9 @@ projected_2.shape
 #%%
 pyplot.scatter(projected_2[:,0],projected_2[:,1], alpha=0.2)
 pyplot.scatter(kmeans.cluster_centers_[:,0],kmeans.cluster_centers_[:,1], color='r')
-pyplot.title('PC2 components with K-Means centroids')
+pyplot.title('PCA components with K-Means centroids')
+pyplot.xlabel('PC1')
+pyplot.ylabel('PC2')
 pyplot.legend(['Data','Centroids'])
 pyplot.show()
 
